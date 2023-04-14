@@ -65,6 +65,27 @@ class T1DPatient(Patient):
         '''
         patient_params = pd.read_csv(PATIENT_PARA_FILE)
         params = patient_params.loc[patient_params.Name == name].squeeze()
+
+        return cls(params, **kwargs)
+
+    @classmethod
+    def withParams(cls, param_dict, **kwargs):
+        '''
+        Construct patient by passing in parameters.
+        '''
+        pname = "custom"
+        pid = 99
+        phistory = 0
+        params = pd.Series(
+            {
+                "Name": pname, 
+                "i": pid, 
+                **param_dict, 
+                "patient_history": phistory
+            }, 
+            name=pid
+        )
+
         return cls(params, **kwargs)
 
     @property
