@@ -127,6 +127,9 @@ class T1DPatient(Patient):
         # Update last input
         self._last_action = action
 
+        # Track derivatives
+        self.derivative = self._odesolver.f(self._odesolver.t, self.state, action, self._params, self._last_Qsto, self._last_foodtaken)
+
         # ODE solver
         self._odesolver.set_f_params(action, self._params, self._last_Qsto,
                                      self._last_foodtaken)
@@ -300,6 +303,8 @@ class T1DPatient(Patient):
         self._last_action = Action(CHO=0, insulin=0)
         self.is_eating = False
         self.planned_meal = 0
+
+        self.derivative = self._odesolver.f(self._odesolver.t, self.state, self._last_action, self._params, self._last_Qsto, self._last_foodtaken)
 
 
 if __name__ == '__main__':
