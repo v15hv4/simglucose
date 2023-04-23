@@ -38,7 +38,7 @@ pip install simglucose
 
 Manual installation: 
 ```bash
-git clone https://github.com/jxx123/simglucose.git
+git clone https://github.com/v15hv4/simglucose.git
 cd simglucose
 ```
 If you have `pip` installed, then
